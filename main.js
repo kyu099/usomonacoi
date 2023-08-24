@@ -1,8 +1,12 @@
 const ctx = canvas.getContext("2d");
 const share = document.getElementById("sharebutton");
+const hcabinet = document.getElementById("hcabinet");
+const vcabinet = document.getElementById("vcabinet");
+const waitings = document.getElementById("waitings");
 
 let players = [1, 1, 1, 1];
 let waiting = [];
+let cabinets = [];
 
 function countPlayers() {
     let x = 0;
@@ -30,28 +34,25 @@ function drawCross(x, y, size, ctx) {
     ctx.fill();
 }
 
+function drawCabinet(ctx, x, y, direction) {
+    if(direction == "v"){
+        ctx.fillRect(x-90, y-120, 180, 240);
+    }
+    if(direction == "h"){
+        ctx.fillRect(x-120, y-90, 240, 180);
+    }
+    
+}
+
 function draw(ctx) {
     ctx.fillStyle = "white";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "yellow";
-    ctx.fillRect(0, 0, 180, 240);
-    ctx.fillRect(0, 250, 180, 240);
-    ctx.fillRect(0, 500, 180, 240);
-    ctx.fillRect(0, 750, 180, 240);
+    for(i = 0; i < cabinets.length; i++) {
+        ctx.fillStyle = "yellow";
+        drawCabinet(ctx, cabinets[i].x, cabinets[i].y, cabinets[i].direction);
+    }
+    
     ctx.fillStyle = "red"
-
-    if(players[0] == 1){
-        drawCross(150, 120, 60, ctx);
-    }
-    if(players[1] == 1){
-        drawCross(150, 120 + 250, 60, ctx);  
-    }
-    if(players[2] == 1){
-        drawCross(150, 120 + 500, 60, ctx);
-    }
-    if(players[3] == 1){
-        drawCross(150, 120 + 750, 60, ctx);
-    }
 
     for(i = 0; i < waiting.length; i++) {
         ctx.fillStyle = "black";
@@ -71,16 +72,16 @@ draw(ctx);
 canvas.addEventListener("click", (e) => {
     let x = e.clientX - canvas.getBoundingClientRect().left;
     let y = e.clientY - canvas.getBoundingClientRect().top;
-    if(x < 200){
-        if(y < 240) {players[0] = -players[0];}
-        if(y > 250 && y < 490) {players[1] = -players[1];}
-        if(y > 500 && y < 740) {players[2] = -players[2];}
-        if(y > 750 && y < 990) {players[3] = -players[3];}
-    } else {
+    if(waitings.checked){
         waiting.push({x: x, y: y});
+    } else if(vcabinet.checked){
+        cabinets.push({x: x, y: y, direction: "v"});
+    } else if(hcabinet.checked){
+        cabinets.push({x: x, y: y, direction: "h"});
     }
     draw(ctx);
-    //console.log(x, y, waiting.length);
+    //cabinets.push({x: x, y: y, direction: direction});
+    console.log(hcabinet.checked, vcabinet.checked, waitings.checked);
 }, false);
 
 share.onclick = () => {
