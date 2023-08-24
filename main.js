@@ -136,7 +136,7 @@ share.onclick = () => {
     }
     text = `#嘘モナ恋情報
 ${now.getHours()}時${now.getMinutes()}分
-チュウニズム 空き${cabinets.length - playercount} 待ち${waiting.length}
+チュウニズム 空き${String(cabinets.length - playercount)} 待ち${waiting.length}
 嘘モナ恋情報共有はこちらから！
 ↓ ↓ ↓
 https://kyu099.github.io/usomonacoi/`
