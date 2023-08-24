@@ -128,12 +128,18 @@ canvas.addEventListener("click", (e) => {
 share.onclick = () => {
     let text ="";
     let now = new Date();
+    let playercount = 0;
+    for(let i = 0; i < cabinets.length; i++) {
+        if(cabinets[i].playing == 1){
+            playercount++;
+        }
+    }
     text = `#嘘モナ恋情報
 ${now.getHours()}時${now.getMinutes()}分
-チュウニズム 空き${(4-countPlayers())/2} 待ち${waiting.length}
-モナ恋情報共有はこちらから！
+チュウニズム 空き${cabinets.length - playercount} 待ち${waiting.length}
+嘘モナ恋情報共有はこちらから！
 ↓ ↓ ↓
-https://kyu099.github.io/fmonacoi/`
+https://kyu099.github.io/usomonacoi/`
 
     const cvs = document.getElementById("canvas");
 
