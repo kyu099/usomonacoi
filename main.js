@@ -73,14 +73,37 @@ canvas.addEventListener("click", (e) => {
     let x = e.clientX - canvas.getBoundingClientRect().left;
     let y = e.clientY - canvas.getBoundingClientRect().top;
     if(waitings.checked){
-        waiting.push({x: x, y: y});
+        let n = 1;
+        for(i = 0; i < cabinets.length; i++) {
+            if((x-cabinets[i].x)**2 + (y-cabinets[i].y)**2 < (60 + 120)**2){
+                n = n * 0;
+            }
+        }
+        if(n > 0) {
+            waiting.push({x: x, y: y});
+        }
     } else if(vcabinet.checked){
-        cabinets.push({x: x, y: y, direction: "v"});
+        let n = 1;
+        for(i = 0; i < cabinets.length; i++) {
+            if((x-cabinets[i].x)**2 + (y-cabinets[i].y)**2 < (120 + 120)**2){
+                n = n * 0;
+            }
+        }
+        if(n > 0) {
+            cabinets.push({x: x, y: y, direction: "v"});
+        }
     } else if(hcabinet.checked){
-        cabinets.push({x: x, y: y, direction: "h"});
+        let n = 1;
+        for(i = 0; i < cabinets.length; i++) {
+            if((x-cabinets[i].x)**2 + (y-cabinets[i].y)**2 < (120 + 120)**2){
+                n = n * 0;
+            }
+        }
+        if(n > 0) {
+            cabinets.push({x: x, y: y, direction: "h"});
+        }
     }
     draw(ctx);
-    //cabinets.push({x: x, y: y, direction: direction});
     console.log(hcabinet.checked, vcabinet.checked, waitings.checked);
 }, false);
 
