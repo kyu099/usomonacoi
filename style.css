@@ -3,6 +3,10 @@ html {
     text-align: center;
 }
 
+label {
+    height: 50px;
+}
+
 body {
     height: 100%; 
     text-align: center;
