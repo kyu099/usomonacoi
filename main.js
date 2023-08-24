@@ -70,9 +70,9 @@ function draw(ctx) {
     }
 
     ctx.fillStyle = "red"
-    ctx.font = '72px sans-serif';
-    ctx.fillText("空き:" + String(cabinets.length - countPlayers()), 40, 1320);
-    ctx.fillText("待ち:" + String(waiting.length), 40, 1400);
+    ctx.font = '64px sans-serif';
+    ctx.fillText("空き:" + String(cabinets.length - countPlayers()), 40, 1190);
+    ctx.fillText("待ち:" + String(waiting.length), 40, 1260);
     ctx.strokeRect(0, 0, canvas.width, canvas.height);
 }
 
