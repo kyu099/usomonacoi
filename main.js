@@ -41,10 +41,10 @@ function drawCross(x, y, size, ctx) {
 //筐体を描画する関数
 function drawCabinet(ctx, x, y, direction) {
     if(direction == "v"){
-        ctx.fillRect(x-68, y-90, 135, 180);
+        ctx.fillRect(x-75, y-100, 150, 200);
     }
     if(direction == "h"){
-        ctx.fillRect(x-90, y-68, 180, 135);
+        ctx.fillRect(x-100, y-75, 200, 150);
     }
 }
 
@@ -57,7 +57,7 @@ function draw(ctx) {
         drawCabinet(ctx, cabinets[i].x, cabinets[i].y, cabinets[i].direction);
         if(cabinets[i].playing == 1){
             ctx.fillStyle = "red"
-            drawCross(cabinets[i].x, cabinets[i].y, 70, ctx);
+            drawCross(cabinets[i].x, cabinets[i].y, 80, ctx);
             console.log("drawCross");
         }
     }
@@ -67,7 +67,7 @@ function draw(ctx) {
     for(i = 0; i < waiting.length; i++) {
         ctx.fillStyle = "black";
         ctx.beginPath();
-        ctx.arc(waiting[i].x, waiting[i].y, 45, 0, 360 * Math.PI / 180, false);
+        ctx.arc(waiting[i].x, waiting[i].y, 50, 0, 360 * Math.PI / 180, false);
         ctx.fill();
     }
 
@@ -95,11 +95,11 @@ canvas.addEventListener("click", (e) => {
     let y = e.clientY - canvas.getBoundingClientRect().top;
     for(let i = 0; i < cabinets.length; i++) {
         if(cabinets[i].direction == "v"){
-            if(checkoverlap(x, y, 0, 0, cabinets[i].x, cabinets[i].y, 135, 180)){
+            if(checkoverlap(x, y, 0, 0, cabinets[i].x, cabinets[i].y, 150, 200)){
                 cabinets[i].playing = cabinets[i].playing * (-1);
             }
         } else if(cabinets[i].direction == "h"){
-            if(checkoverlap(x, y, 0, 0, cabinets[i].x, cabinets[i].y, 180, 135)){
+            if(checkoverlap(x, y, 0, 0, cabinets[i].x, cabinets[i].y, 200, 150)){
                 cabinets[i].playing = cabinets[i].playing * (-1);
             }
         }
@@ -109,11 +109,11 @@ canvas.addEventListener("click", (e) => {
         let n = 1;
         for(i = 0; i < cabinets.length; i++) {
             if(cabinets[i].direction == "v"){
-                if(checkoverlap(x, y, 0, 0, cabinets[i].x, cabinets[i].y, 135, 180)){
+                if(checkoverlap(x, y, 0, 0, cabinets[i].x, cabinets[i].y, 150, 200)){
                     n = n * 0;
                 }
             } else if(cabinets[i].direction == "h"){
-                if(checkoverlap(x, y, 0, 0, cabinets[i].x, cabinets[i].y, 180, 135)){
+                if(checkoverlap(x, y, 0, 0, cabinets[i].x, cabinets[i].y, 200, 150)){
                     n = n * 0;
                 }
             }
@@ -126,11 +126,11 @@ canvas.addEventListener("click", (e) => {
         let n = 1;
         for(i = 0; i < cabinets.length; i++) {
             if(cabinets[i].direction == "v"){
-                if(checkoverlap(x, y, 135, 180, cabinets[i].x, cabinets[i].y, 135+5, 180+5)){
+                if(checkoverlap(x, y, 150, 200, cabinets[i].x, cabinets[i].y, 150+5, 200+5)){
                     n = n * 0;
                 }
             } else if(cabinets[i].direction == "h"){
-                if(checkoverlap(x, y, 135, 180, cabinets[i].x, cabinets[i].y, 180+5, 135+5)){
+                if(checkoverlap(x, y, 150, 200, cabinets[i].x, cabinets[i].y, 200+5, 150+5)){
                     n = n * 0;
                 }
             }
@@ -143,11 +143,11 @@ canvas.addEventListener("click", (e) => {
         let n = 1;
         for(i = 0; i < cabinets.length; i++) {
             if(cabinets[i].direction == "v"){
-                if(checkoverlap(x, y, 180, 135, cabinets[i].x, cabinets[i].y, 135+5, 180+5)){
+                if(checkoverlap(x, y, 200, 150, cabinets[i].x, cabinets[i].y, 150+5, 200+5)){
                     n = n * 0;
                 }
             } else if(cabinets[i].direction == "h"){
-                if(checkoverlap(x, y, 180, 135, cabinets[i].x, cabinets[i].y, 180+5, 135+5)){
+                if(checkoverlap(x, y, 200, 150, cabinets[i].x, cabinets[i].y, 200+5, 150+5)){
                     n = n * 0;
                 }
             }
